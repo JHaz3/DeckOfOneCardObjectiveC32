@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DMVCard : NSObject
 
+@property (nonatomic, copy, readonly) NSString *suit;
+@property (nonatomic, copy, readonly) NSString *image;
+
+- (instancetype) initWithSuit: (NSString *) suit image: (NSString *) image;
+- (instancetype) initWithDictionary: (NSDictionary *) dictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END

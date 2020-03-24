@@ -4,46 +4,54 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Card View Controller-->
         <scene sceneID="6pd-Ts-N6K">
             <objects>
-                <viewController id="jnK-7Y-1bO" sceneMemberID="viewController">
+                <viewController id="jnK-7Y-1bO" customClass="DMVCardViewController" customModule="DeckOfOneCardObjectiveC32" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u6t-ew-Fst">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bkT-KE-ugD">
-                                <rect key="frame" x="67" y="133" width="331" height="627"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bkT-KE-ugD">
+                                <rect key="frame" x="21.5" y="178" width="331" height="573"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22h-na-tEZ">
                                         <rect key="frame" x="45.5" y="0.0" width="240" height="128"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeM-8v-9du">
-                                        <rect key="frame" x="144.5" y="138" width="42" height="489"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeM-8v-9du">
+                                        <rect key="frame" x="140.5" y="136" width="50" height="399"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJZ-fX-zbP">
+                                        <rect key="frame" x="147.5" y="543" width="36" height="30"/>
+                                        <state key="normal" title="Draw"/>
+                                        <connections>
+                                            <action selector="drawCardButtonTapped:" destination="jnK-7Y-1bO" eventType="touchUpInside" id="Rfn-PB-05s"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJZ-fX-zbP">
-                                <rect key="frame" x="184" y="736" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bkT-KE-ugD" firstAttribute="height" secondItem="u6t-ew-Fst" secondAttribute="height" multiplier="0.7" id="Ii0-VI-TcI"/>
-                            <constraint firstItem="bkT-KE-ugD" firstAttribute="centerY" secondItem="GIW-Y3-Blt" secondAttribute="centerY" id="c0Y-an-dX3"/>
-                            <constraint firstItem="bkT-KE-ugD" firstAttribute="width" secondItem="u6t-ew-Fst" secondAttribute="width" multiplier="0.8" id="g4Z-Fv-HAv"/>
-                            <constraint firstItem="bkT-KE-ugD" firstAttribute="centerX" secondItem="GIW-Y3-Blt" secondAttribute="centerX" id="tl0-g7-ecy"/>
+                            <constraint firstItem="bkT-KE-ugD" firstAttribute="width" secondItem="GIW-Y3-Blt" secondAttribute="width" multiplier="0.8" id="9qn-7A-h0A"/>
+                            <constraint firstItem="bkT-KE-ugD" firstAttribute="centerX" secondItem="GIW-Y3-Blt" secondAttribute="centerX" constant="-20" id="APr-8V-Qj9"/>
+                            <constraint firstItem="bkT-KE-ugD" firstAttribute="centerY" secondItem="GIW-Y3-Blt" secondAttribute="centerY" constant="11.5" id="Q1e-08-iCi"/>
+                            <constraint firstItem="bkT-KE-ugD" firstAttribute="height" secondItem="GIW-Y3-Blt" secondAttribute="height" multiplier="0.7" id="lg1-RZ-QPN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GIW-Y3-Blt"/>
                     </view>
+                    <connections>
+                        <outlet property="cardImageView" destination="22h-na-tEZ" id="7TN-CB-JQY"/>
+                        <outlet property="drawCardButton" destination="GJZ-fX-zbP" id="MtM-8Z-7wq"/>
+                        <outlet property="suitLabel" destination="GeM-8v-9du" id="iQI-7o-dE6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4A-dl-PNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@class DMVCard;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DMVCardController : NSObject
-
+// ------------------------------------------------------> this is the @escaping -----------------------------------
++ (void)drawNewCard: (NSNumber *)numberOfCards completion:(void(^) (NSArray<DMVCard *> *_Nullable cards)) completion;
++ (void)fetchCardImage: (DMVCard *)card completion:(void(^) (UIImage *_Nullable image))completion;
 @end
 
 NS_ASSUME_NONNULL_END

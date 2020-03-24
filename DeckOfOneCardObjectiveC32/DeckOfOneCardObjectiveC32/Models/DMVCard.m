@@ -10,4 +10,32 @@
 
 @implementation DMVCard
 
+- (instancetype)initWithSuit:(NSString *)suit image:(NSString *)image
+{
+    if (self = [super init])
+    {
+        _suit = suit;
+        _image = image;
+    }
+    return self;
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *) dictionary
+{
+    NSString *suit = dictionary[[DMVCard suitKey]];
+    NSString *image = dictionary[[DMVCard imageKey]];
+    
+    return [self initWithSuit:suit image:image];
+}
+
++ (NSString *)suitKey
+{
+    return @"suit";
+}
+
++ (NSString *)imageKey
+{
+    return @"image";
+}
+
 @end

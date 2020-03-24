@@ -9,22 +9,61 @@
 import UIKit
 
 class DMVCardViewController: UIViewController {
-
+    
+    //MARK: - Outlets
+    @IBOutlet weak var suitLabel: UILabel!
+    @IBOutlet weak var cardImageView: UIImageView!
+    @IBOutlet weak var drawCardButton: UIButton!
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        drawCardButton.layer.cornerRadius = drawCardButton.frame.width/0.5
+        self.fetchCards()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Actions
+    @IBAction func drawCardButtonTapped(_ sender: Any) {
+        self.fetchCards()
     }
-    */
-
-}
+    
+    //MARK: - Helper Functions
+    func fetchCards() {
+        DMVCardController.drawNewCard(1) { (cards) in
+            if let cards = cards {
+                DMVCardController.fetchCardImage(cards[0]) { (cardImage) in
+                    DispatchQueue.main.async {
+                        if let cardImage = cardImage {
+                            self.updateViews(card: cards[0], image: cardImage)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateViews(card: DMVCard, image: UIImage) {
+        
+        self.cardImageView.image = image
+        self.suitLabel.text = card.suit
+        
+        switch card.suit {
+        case "DIAMONDS":
+            self.drawCardButton.backgroundColor = .systemRed
+            self.suitLabel.textColor = .systemRed
+        case "HEARTS":
+            self.drawCardButton.backgroundColor = .systemRed
+            self.suitLabel.textColor = .systemRed
+        case "SPADES":
+            self.drawCardButton.backgroundColor = .black
+            self.suitLabel.textColor = .black
+        case "CLUBS":
+            self.drawCardButton.backgroundColor = .black
+            self.suitLabel.textColor = .black
+        default:
+            break
+            
+        }
+    }
+}// End of Class
